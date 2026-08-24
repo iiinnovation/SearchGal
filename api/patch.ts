@@ -1,4 +1,5 @@
 import { handleSearchRequestStream, PLATFORMS_PATCH } from '../src/core';
+import { resolveSearchEnv } from '../src/utils/env';
 
 export const config = {
     runtime: 'edge',
@@ -35,11 +36,12 @@ export default async function handler(request: Request) {
 
         const { readable, writable } = new TransformStream();
         const writer = writable.getWriter();
+        const searchEnv = resolveSearchEnv();
 
         // 异步执行搜索
         (async () => {
             try {
-                await handleSearchRequestStream(game.trim(), PLATFORMS_PATCH, writer);
+                await handleSearchRequestStream(game.trim(), PLATFORMS_PATCH, writer, searchEnv);
             } catch (err) {
                 console.error("Streaming error:", err);
             } finally {

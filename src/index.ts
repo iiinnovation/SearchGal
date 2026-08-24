@@ -1,5 +1,6 @@
 import { handleSearchRequestStream, PLATFORMS_GAL, PLATFORMS_PATCH } from "./core";
 import { buildRedirectResponse } from "./redirect";
+import { resolveSearchEnv } from "./utils/env";
 import type { Platform } from "./types";
 export type Env = Record<string, unknown>;
 
@@ -9,7 +10,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
-async function handleSearch(request: Request, _env: Env, ctx: ExecutionContext, platforms: Platform[]) {
+async function handleSearch(request: Request, env: Env, ctx: ExecutionContext, platforms: Platform[]) {
   try {
     const formData = await request.formData();
     const game = formData.get("game") as string;
@@ -24,10 +25,11 @@ async function handleSearch(request: Request, _env: Env, ctx: ExecutionContext, 
 
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
+    const searchEnv = resolveSearchEnv(env);
 
     // 将异步任务交给 waitUntil 来处理，确保它能完整执行
     ctx.waitUntil(
-      handleSearchRequestStream(game.trim(), platforms, writer)
+      handleSearchRequestStream(game.trim(), platforms, writer, searchEnv)
         .catch(err => console.error("Streaming error:", err))
         .finally(() => writer.close())
     );

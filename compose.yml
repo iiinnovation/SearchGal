@@ -4,4 +4,7 @@ services:
     container_name: searchgal-api
     ports:
       - "8787:8787"
+    environment:
+      # TouchGal 官方 API token（可选），在 developer.touchgal.com 申请
+      - TOUCHGAL_API_TOKEN=${TOUCHGAL_API_TOKEN:-}
     restart: unless-stopped

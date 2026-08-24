@@ -1,0 +1,15 @@
+# 密钥文件绝不进入镜像层
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+
+# 构建上下文瘦身
+.git
+node_modules
+.wrangler
+.vercel
+.netlify
+.vscode
+.claude
+.history

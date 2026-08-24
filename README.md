@@ -106,6 +106,29 @@ pnpm install        # 安装依赖
 pnpm wrangler dev   # 启动开发服务器
 ```
 
+### 🔑 环境变量
+
+| 变量 | 必需 | 说明 |
+|------|:----:|------|
+| `TOUCHGAL_API_TOKEN` | 可选 | TouchGal 官方元数据 API token（`tgal_live_...`）。主站已整站开启 Cloudflare 质询，无法直接抓取，需在 [developer.touchgal.com](https://developer.touchgal.com) 申请、审核通过后创建 token。**未配置时 TouchGal 平台会自动跳过（不报错），配置后即可恢复搜索。** |
+
+按部署平台设置：
+
+```bash
+# Cloudflare Workers：作为 secret 注入（本地开发放入 .dev.vars 文件，不要提交）
+pnpm wrangler secret put TOUCHGAL_API_TOKEN
+echo 'TOUCHGAL_API_TOKEN=tgal_live_xxx' >> .dev.vars
+
+# Vercel：项目 Settings → Environment Variables，或
+vercel env add TOUCHGAL_API_TOKEN
+
+# Netlify：Site settings → Environment variables，或
+netlify env:set TOUCHGAL_API_TOKEN tgal_live_xxx
+
+# Docker / Podman Compose：通过容器环境变量传入（compose.yml 已透传）
+TOUCHGAL_API_TOKEN=tgal_live_xxx podman-compose up -d
+```
+
 ### 🐳 Podman Compose 容器化部署
 
 ```bash

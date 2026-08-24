@@ -1,4 +1,4 @@
-import type { Platform, StreamProgress, StreamResult } from "./types";
+import type { Platform, SearchEnv, StreamProgress, StreamResult } from "./types";
 import platformsGal from "./platforms/gal";
 import platformsPatch from "./platforms/patch";
 
@@ -19,6 +19,7 @@ export async function handleSearchRequestStream(
   game: string,
   platforms: Platform[],
   writer: WritableStreamDefaultWriter<Uint8Array>,
+  env: SearchEnv = {},
 ): Promise<void> {
   // 记录搜索关键词
   console.log(JSON.stringify({
@@ -34,7 +35,7 @@ export async function handleSearchRequestStream(
 
   const searchPromises = platforms.map(async (platform) => {
     try {
-      const result = await platform.search(game); 
+      const result = await platform.search(game, env);
       completed++;
       
       const progress: StreamProgress = { completed, total };

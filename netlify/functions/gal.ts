@@ -2,6 +2,7 @@ import { Handler } from '@netlify/functions';
 import { Readable } from 'stream';
 import busboy from 'busboy';
 import { handleSearchRequestStream, PLATFORMS_GAL } from '../../src/core';
+import { resolveSearchEnv } from '../../src/utils/env';
 
 const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -94,7 +95,7 @@ export const handler: Handler = async (event) => {
         const writer = writable.getWriter();
 
         // 异步执行搜索并收集结果
-        handleSearchRequestStream(game.trim(), PLATFORMS_GAL, writer).then(() => {
+        handleSearchRequestStream(game.trim(), PLATFORMS_GAL, writer, resolveSearchEnv()).then(() => {
             writer.close();
         }).catch((err) => {
             console.error('Streaming error:', err);

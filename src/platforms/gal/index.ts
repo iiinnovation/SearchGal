@@ -19,7 +19,7 @@ import Nysoure from "./Nysoure";
 // import QingJiACG from "./QingJiACG"; // 已禁用：全站 Cloudflare 人机质询，所有 UA 均被拦截，无法抓取，故停用
 import ShenShiTianTang from "./ShenShiTianTang";
 import TianYouErCiYuan from "./TianYouErCiYuan";
-// import TouchGal from "./TouchGal"; // 已禁用：Cloudflare 人机质询 + 源站按 searchgal UA 屏蔽，无法抓取，故停用
+import TouchGal from "./TouchGal"; // 经官方元数据 API（developer.touchgal.com）接入，需配置 TOUCHGAL_API_TOKEN，未配置时自动跳过
 import VikaACG from "./VikaACG";
 import VNS from "./VNS";
 import WeiZhiYunPan from "./WeiZhiYunPan";
@@ -53,7 +53,7 @@ const platforms: Platform[] = [
   // QingJiACG, // 已禁用
   ShenShiTianTang,
   TianYouErCiYuan,
-  // TouchGal, // 已禁用
+  TouchGal, // 官方 API 接入，需 TOUCHGAL_API_TOKEN
   VikaACG,
   VNS,
   WeiZhiYunPan,
