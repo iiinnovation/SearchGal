@@ -6,7 +6,7 @@ import FuFuACG from "./FuFuACG";
 import GalgameX from "./GalgameX";
 import GalTuShuGuan from "./GalTuShuGuan";
 // import GGBases from "./GGBases"; // 已禁用：openresty WAF 按 searchgal UA 屏蔽，换 UA 即绕过站长主动屏蔽，故停用
-import JiMengACG from "./JiMengACG";
+// import JiMengACG from "./JiMengACG"; // 已禁用：绮梦ACG 已永久关闭（game.acgs.one / acgs.moe / galgame.zip 等域名均已失效），故停用
 import JiuLiACG from "./JiuLiACG";
 import KisuGal from "./KisuGal";
 import Koyso from "./Koyso";
@@ -40,7 +40,7 @@ const platforms: Platform[] = [
   GalgameX,
   GalTuShuGuan,
   // GGBases, // 已禁用
-  JiMengACG,
+  // JiMengACG, // 已禁用
   JiuLiACG,
   KisuGal,
   Koyso,
