@@ -17,6 +17,7 @@ import MaoMaoWangPan from "./MaoMaoWangPan";
 import MiaoYuanLingYu from "./MiaoYuanLingYu";
 import Nysoure from "./Nysoure";
 // import QingJiACG from "./QingJiACG"; // 已禁用：全站 Cloudflare 人机质询，所有 UA 均被拦截，无法抓取，故停用
+import SakuGal from "./SakuGal";
 import ShenShiTianTang from "./ShenShiTianTang";
 import TianYouErCiYuan from "./TianYouErCiYuan";
 import TouchGal from "./TouchGal"; // 经官方元数据 API（developer.touchgal.com）接入，需配置 TOUCHGAL_API_TOKEN，未配置时自动跳过
@@ -51,6 +52,7 @@ const platforms: Platform[] = [
   MiaoYuanLingYu,
   Nysoure,
   // QingJiACG, // 已禁用
+  SakuGal,
   ShenShiTianTang,
   TianYouErCiYuan,
   TouchGal, // 官方 API 接入，需 TOUCHGAL_API_TOKEN
