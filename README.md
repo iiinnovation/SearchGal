@@ -1,3 +1,20 @@
+# SearchGal Desktop
+
+本仓库是 [Moe-Sakura/SearchGal](https://github.com/Moe-Sakura/SearchGal) 的非官方桌面增强版，由 [iiinnovation](https://github.com/iiinnovation) 维护。原项目及原有代码版权归原作者和贡献者所有。
+
+修改日期：2026-09-18。基于上游提交 `133e236d57ad2a44d6c541126fe99782592cd2b4`，新增 Electron 桌面端、自动选源下载、断点恢复、LLM 解压密码检查与展示，以及本地角色导入。本衍生版本采用 **GNU AGPL v3**，保留完整 [LICENSE](LICENSE)，修改和来源说明见 [NOTICE](NOTICE)。
+
+- [桌面端使用与构建](desktop/README.md)
+- [命令行下载器](downloader/README.md)
+- [Windows 安装包发布入口](https://github.com/iiinnovation/SearchGal/releases)（没有 Release 时可按桌面端文档自行构建）
+- [发布步骤与源码对应规则](RELEASING.md)
+
+桌面端需要 Node.js 24 LTS 进行构建，安装后的 Windows 用户无需安装 Node.js。LLM 功能默认关闭，在偏好设置中配置自己的 API Key 后启用。公开仓库不分发第三方角色素材，用户可自行导入有权使用的图片。
+
+下方保留上游搜索服务说明。`searchgal.top` 和上游前端链接属于原项目，不代表本 Fork 的服务或官方背书。
+
+---
+
 <div align="center">
 
 # 🔍 SearchGal · Gal资源聚合搜索工具
@@ -104,6 +121,10 @@
 pnpm install        # 安装依赖
 pnpm wrangler dev   # 启动开发服务器
 ```
+
+### 🪟 Windows 桌面伙伴（开发中）
+
+桌面端位于 [`desktop/`](./desktop/README.md)，使用 Electron 内置运行时，直接复用搜索和下载代码。开发者安装 Node.js 24 后，在 `desktop/` 运行 `npm ci`、`npm run dev`；Windows 安装包使用 `npm run dist:win` 构建。最终用户只需安装应用，无需手动启动上述 API 服务。当前默认角色和 Windows 实机验收尚未完成，详见 [开发状态](./desktop/TASK_STATUS.md)。
 
 ### 🔑 环境变量
 
@@ -322,6 +343,6 @@ SearchGal/
 
 **欢迎各位 GalGame 爱好者优化本项目 ❤️**
 
-[MIT License](./LICENSE) © SearchGal
+[GNU AGPL v3](./LICENSE) © SearchGal 原作者与贡献者；桌面增强由 iiinnovation 维护。
 
 </div>

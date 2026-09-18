@@ -1,0 +1,24 @@
+SearchGal Desktop
+
+Upstream: https://github.com/Moe-Sakura/SearchGal
+Upstream revision: 133e236d57ad2a44d6c541126fe99782592cd2b4
+Fork: https://github.com/iiinnovation/SearchGal
+Modification date: 2026-09-18
+
+This is an unofficial modified distribution maintained by iiinnovation.
+Copyright in the original project remains with its original authors and
+contributors. Original copyright and license notices are retained.
+
+Modifications include an Electron desktop application, automatic source
+selection and download fallback, download checkpoints and integrity checks,
+OpenAI-compatible archive-password assessment, secure desktop API-key
+storage, password display and copying, and user-imported desktop companions.
+
+The combined derivative work is distributed under GNU AGPL version 3.
+See LICENSE for the complete license. Third-party dependencies retain their
+own license notices. This notice does not license third-party character art.
+User-provided artwork and local verification captures are excluded from
+this source distribution. Test images are generated geometric fixtures.
+
+The upstream name and links identify the origin of the project and do not
+imply endorsement of this fork by the upstream authors.

@@ -1,6 +1,8 @@
 # Node.js dependencies
 node_modules/
 package-lock.json
+!/desktop/package-lock.json
+!/downloader/package-lock.json
 
 # Wrangler CLI temporary files
 .wrangler/
@@ -9,7 +11,7 @@ package-lock.json
 # dist/
 # build/
 
-*.md
+# Documentation is tracked
 
 # Environment variables
 .env
@@ -26,3 +28,16 @@ package-lock.json
 .claude
 
 .history
+
+# Local settings, generated reports, and private artwork
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+.config.json
+state.json
+/desktop/assets/
+/desktop/verification/
+/downloader/verification/
+/desktop/TASK_STATUS.md
+/downloader/TASK_STATUS.md

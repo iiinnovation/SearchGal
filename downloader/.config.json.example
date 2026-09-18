@@ -1,0 +1,14 @@
+{
+  "llm": {
+    "enabled": false,
+    "provider": "openai-compatible",
+    "baseURL": "https://api.deepseek.com/v1",
+    "apiKey": "",
+    "model": "deepseek-chat",
+    "timeoutMs": 15000
+  },
+  "passwordCheck": {
+    "enabled": false,
+    "failureMode": "continue"
+  }
+}
