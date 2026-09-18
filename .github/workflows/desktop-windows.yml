@@ -1,0 +1,60 @@
+name: Windows desktop build and verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['desktop/**', 'downloader/src/**', 'src/**', 'LICENSE', 'NOTICE', '.github/workflows/desktop-windows.yml']
+  pull_request:
+    paths: ['desktop/**', 'downloader/src/**', 'src/**', 'LICENSE', 'NOTICE', '.github/workflows/desktop-windows.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  desktop:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: desktop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Install desktop dependencies
+        run: npm ci
+      - name: Check types and build the application
+        run: npm run build
+      - name: Test task service and worker
+        run: npm test
+      - name: Verify Electron search, download, recovery and ZIP extraction
+        run: npm run test:e2e
+      - name: Build the x64 NSIS installer
+        run: npx --no-install electron-builder --win nsis --x64
+      - name: Install in a Chinese path and verify the installed application
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+          ./scripts/verify-windows-install.ps1 -Installer "release/SearchGal-Setup-$version-x64.exe"
+      - name: Save test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-windows-test-results
+          path: |
+            desktop/test-results/
+            desktop/test-results-installed/
+            desktop/verification/windows-install/
+          if-no-files-found: ignore
+      - name: Save Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: SearchGal-windows-x64
+          path: |
+            desktop/release/*.exe
+            desktop/release/*.blockmap
+          if-no-files-found: error
